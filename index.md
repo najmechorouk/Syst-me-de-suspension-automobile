@@ -30,9 +30,9 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 
 | Fichier Simulink | Description |
 |------------------|-------------|
-| `quart_vehicule_suspension_passive.slx` | Modèle 2DDL de la suspension passive |
-| `quart_vehicule_suspension_semi_active.slx` | Modèle avec amortissement contrôlé (Skyhook) |
-| `quart_vehicule_suspension_active.slx` | Modèle avec actionneur (Skyhook + LQR) |
+| (quart_vehicule_suspension_passive.slx) | Modèle 2DDL de la suspension passive |
+| (quart_vehicule_suspension_semi_active.slx) | Modèle avec amortissement contrôlé (Skyhook) |
+| (quart_vehicule_suspension_active.slx) | Modèle avec actionneur (Skyhook + LQR) |
 
 
 
@@ -63,11 +63,11 @@ Des contrôleurs, tels que des algorithmes optimaux ou adaptatifs, déterminent 
 
 La suspension semi-active ajuste dynamiquement l’amortissement selon une loi Skyhook :
 
-\[Fa = Cs.dx1\]
-
 ![Equation semi-active](equation de susp semiactive.PNG)  
 où :
+
 Cs (Amortissement Skyhook) : contrôle l'amortissement en fonction de la vitesse absolue du châssis pour améliorer le confort.
+
 Fa : la force d'amortissement liée à la vitesse du châssis par rapport à un "ancre" fixe (Skyhook). Il aide à réduire les oscillations en s'opposant au mouvement du châssis seul, indépendamment de la roue.
 
 Le schéma en bloc obtenu à l’aide du Simulink :

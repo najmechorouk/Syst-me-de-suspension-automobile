@@ -30,9 +30,9 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 
 | Fichier Simulink | Description |
 |------------------|-------------|
-| (quart_vehicule_suspension_passive.slx) | Modèle 2DDL de la suspension passive |
-| (quart_vehicule_suspension_semi_active.slx) | Modèle avec amortissement contrôlé (Skyhook) |
-| (quart_vehicule_suspension_active.slx) | Modèle avec actionneur (Skyhook + LQR) |
+| [Fichier Sumilink de la suspension passive](quart_vehicule_suspension_passive.slx) | Modèle 2DDL de la suspension passive |
+| [Fichier Sumilink de la suspension semi-active](quart_vehicule_suspension_semi_active.slx) | Modèle avec amortissement contrôlé (Skyhook) |
+| [Fichier Sumilink de la suspension active](quart_vehicule_suspension_active.slx) | Modèle avec actionneur (Skyhook + LQR) |
 
 
 

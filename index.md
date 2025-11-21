@@ -18,7 +18,13 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 
 ---
 
-## 2. Structure du dépôt
+## 2. Objectifs du projet
+
+- Comparer les réponses temporelles pour une même excitation route.  
+- Évaluer le confort (accélération de la masse suspendue).  
+- Examiner la tenue de route (dynamique de la masse non suspendue).  
+- Étudier l'apport des stratégies Skyhook et LQR.  
+- Démontrer l’intérêt des suspensions actives.
 
 ### Modèles Simulink
 
@@ -28,62 +34,54 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 | `quart_vehicule_suspension_semi_active.slx` | Modèle avec amortissement contrôlé (Skyhook) |
 | `quart_vehicule_suspension_active.slx` | Modèle avec actionneur (Skyhook + LQR) |
 
-### Figures – Équations – Modèles
 
-#### Équations de la suspension passive  
-![Equation passive](equation de susp passive.PNG)
-
-#### Modèle passif  
-![Modèle passif](susp passive model quart vehicul.PNG)
-
-#### Équations de la suspension semi-active  
-![Equation semi-active](equation de susp semiactive.PNG)
-
-#### Modèle semi-actif  
-![Modèle semi-actif](susp semiactive model quart vehicul.PNG)
-
-#### Équations de la suspension active  
-![Equation active](equation de susp active.PNG)
-
-#### Paramètres du modèle  
-![Valeurs paramètres](valeur des cst.PNG)
 
 ---
 
 ## 3. Modélisation théorique
 
 ### 3.1. Suspension passive
+La suspension passive, constituée d’un ressort supportant la charge et d’un amortisseur dissipant l’énergie des oscillations, est modélisée par un quart de véhicule à deux degrés de liberté (2DDL), où la masse suspendue représente le châssis et la masse non suspendue la roue. 
 
-La suspension passive repose sur un système ressort–amortisseur.  
-Le modèle 2DDL comprend : masses \(m_1,m_2\), raideurs \(k_1,k_2\), amortissements \(c_1,c_2\) et l’entrée route \(x_0\).
+![Modèle passif](susp passive model quart vehicul.PNG)
+
+Les équations du mouvement, dérivées de la deuxième loi de Newton, intègrent les forces du ressort et de l’amortisseur ainsi que l’excitation de la route, permettant d’évaluer à la fois le confort (accélérations du châssis) et la tenue de route (contact roue-sol).
 
 ![Equation passive](equation de susp passive.PNG)  
-![Modèle passif](susp passive model quart vehicul.PNG)
+
+Le schéma en bloc obtenu à l’aide du Simulink :
+![Schéma en bloc](sus passive.png) 
 
 ---
 
 ### 3.2. Suspension semi-active (Skyhook)
+La suspension semi-active améliore le confort et la stabilité en adaptant dynamiquement l’amortissement selon les conditions de conduite, contrairement à la suspension passive fixe. 
+Son modèle intègre des ressorts, des amortisseurs et un dispositif de contrôle, et utilise des équations différentielles pour décrire la dynamique du véhicule. 
+Des contrôleurs, tels que des algorithmes optimaux ou adaptatifs, déterminent les réglages d’amortissement les plus efficaces en fonction des conditions.
+
+![Modèle semi-actif](susp semiactive model quart vehicul.PNG)
 
 La suspension semi-active ajuste dynamiquement l’amortissement selon une loi Skyhook :
 
-\[
-F_a = C_s \dot{x}_1
-\]
+\[Fa = Cs.dx1\]
 
 ![Equation semi-active](equation de susp semiactive.PNG)  
-![Modèle semi-actif](susp semiactive model quart vehicul.PNG)
+où :
+Cs (Amortissement Skyhook) : contrôle l'amortissement en fonction de la vitesse absolue du châssis pour améliorer le confort.
+Fa : la force d'amortissement liée à la vitesse du châssis par rapport à un "ancre" fixe (Skyhook). Il aide à réduire les oscillations en s'opposant au mouvement du châssis seul, indépendamment de la roue.
+
+Le schéma en bloc obtenu à l’aide du Simulink :
+![Schéma en bloc](sus semi.png) 
 
 ---
 
 ### 3.3. Suspension active (Skyhook + LQR)
-
-La suspension active inclut un actionneur contrôlé par :
-
-\[
-F_a = C_r(\dot{x}_1 - \dot{x}_2) - K X
-\]
+La suspension active combine mécanique et contrôle en temps réel, intégrant masses suspendues, ressorts, amortisseurs et actionneurs capables de générer des forces contrôlées. Un régulateur, basé sur des stratégies optimales ou adaptatives, ajuste les forces via les actionneurs en fonction des mesures de déplacement et de vitesse, afin de réduire les vibrations et d’améliorer la stabilité du véhicule.
+Son comportement est décrit par des équations différentielles pour les masses suspendues et non suspendues. 
 
 ![Equation active](equation de susp active.PNG)
+
+Nous utilisons la commande Skyhook étendue pour modéliser et contrôler la force des actionneurs et l’algorithme de LQR pour avoir la valeur du gain pour l’expression de Fa.
 
 ---
 
@@ -97,51 +95,23 @@ Les valeurs des paramètres proviennent de travaux académiques et notamment de 
 
 ### 4.1. Résultats – Suspension passive
 
-![Courbe passive 1](corb sus pass.png)  
-![Courbe passive 2](sus passive.png)  
-![Courbe passive 3](courbe de la suspension passive.png)
+![Courbe de la suspension passive](corb sus pass.png)  
 
 ---
 
 ### 4.2. Résultats – Suspension semi-active
 
-![Courbe semi-active 1](courb sus semi.png)  
-![Courbe semi-active 2](sus semi.png)  
-![Courbe semi-active 3](courbe de la suspension semi_active.png)
+![Courbe de la suspension semi_active](courb sus semi.png)  
 
 ---
 
 ### 4.3. Résultats – Suspension active
 
-![Courbe active 1](corb sus activ.png)  
-![Courbe active 2](sus activ.png)  
-![Courbe active 3](courbe de la suspension active.png)
-
+![Courbe de la suspension active](corb sus activ.png)  
+ 
 ---
 
-## 5. Contenu complémentaire du dépôt
+### 4.4 Analyse des résultats
 
-![Figure active modèle slx](figure de la suspension active dans le document slx.png)  
-![Figure passive modèle slx](figure de la suspension passive dans le document slx.png)  
-![Figure semi-active modèle slx](figure de la suspension semi_active dans le document slx.png)  
-![Figure passive modèle quart](figure de la suspension passive model quart vehicul.PNG)  
-![Figure semi-active modèle quart](figure de la suspension semiactive model quart vehicul.PNG)
-
----
-
-## 6. Objectifs du projet
-
-- Comparer les réponses temporelles pour une même excitation route.  
-- Évaluer le confort (accélération de la masse suspendue).  
-- Examiner la tenue de route (dynamique de la masse non suspendue).  
-- Étudier l'apport des stratégies Skyhook et LQR.  
-- Démontrer l’intérêt des suspensions actives.
-
----
-
-## 7. Références principales
-
-- Damien Sammier, *Sur la modélisation et la commande de suspension de véhicules automobiles* (thèse).  
-- Ouvrages spécialisés et articles de recherche sur la dynamique verticale des véhicules, Skyhook, LQR et suspensions actives.  
-- Publications institutionnelles et rapports techniques sur les systèmes de suspension.
+L’analyse graphique met en évidence l’apport déterminant de la suspension active par rapport à la suspension passive. Les résultats montrent une réduction des vibrations de 91,9 %, traduisant une nette amélioration du confort et de la stabilité. Le temps d’amortissement diminue de 85,1 %, ce qui confirme une capacité accrue à dissiper rapidement l’énergie vibratoire. Enfin, la vitesse de réponse est environ 6,7 fois plus élevée, démontrant une réactivité supérieure du système actif face aux irrégularités de la route. L’ensemble de ces indicateurs confirme la supériorité fonctionnelle de la suspension active dans les conditions étudiées.
 

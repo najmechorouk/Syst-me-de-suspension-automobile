@@ -25,12 +25,12 @@ L’objectif est d’évaluer l’impact de chaque architecture sur le confort, 
 ## 3. Structure du dépôt
 
 ```
-/models        → modèles Simulink (passive, semi-active, active)
-/equations     → équations du mouvement et matrices d’état
-/simulations   → résultats des simulations et figures
-index.md
 /Images        → schémas Simulink, equations, résultats
+/equations     → équations du mouvement et matrices d’état
+/models        → modèles Simulink (passive, semi-active, active)
+/simulations   → résultats des simulations et figures
 README.md
+index.md
 ```
 
 ## 4. Modélisation théorique

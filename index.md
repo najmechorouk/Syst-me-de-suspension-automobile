@@ -117,3 +117,4 @@ Les valeurs des paramètres proviennent de travaux académiques et notamment de 
 
 L’analyse graphique met en évidence l’apport déterminant de la suspension active par rapport à la suspension passive. Les résultats montrent une réduction des vibrations de 91,9 %, traduisant une nette amélioration du confort et de la stabilité. Le temps d’amortissement diminue de 85,1 %, ce qui confirme une capacité accrue à dissiper rapidement l’énergie vibratoire. Enfin, la vitesse de réponse est environ 6,7 fois plus élevée, démontrant une réactivité supérieure du système actif face aux irrégularités de la route. L’ensemble de ces indicateurs confirme la supériorité fonctionnelle de la suspension active dans les conditions étudiées.
 
+[Accéder au repository complet](https://github.com/najmechorouk/Syst-me-de-suspension-automobile)

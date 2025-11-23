@@ -30,9 +30,9 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 
 | Fichier Simulink | Description |
 |------------------|-------------|
-| [Fichier Sumilink de la suspension passive](quart_vehicule_suspension_passive.slx) | Modèle 2DDL de la suspension passive |
-| [Fichier Sumilink de la suspension semi-active](quart_vehicule_suspension_semi_active.slx) | Modèle avec amortissement contrôlé (Skyhook) |
-| [Fichier Sumilink de la suspension active](quart_vehicule_suspension_active.slx) | Modèle avec actionneur (Skyhook + LQR) |
+| [Fichier Sumilink de la suspension passive](models/quart_vehicule_suspension_passive.slx) | Modèle 2DDL de la suspension passive |
+| [Fichier Sumilink de la suspension semi-active](models/quart_vehicule_suspension_semi_active.slx) | Modèle avec amortissement contrôlé (Skyhook) |
+| [Fichier Sumilink de la suspension active](models/quart_vehicule_suspension_active.slx) | Modèle avec actionneur (Skyhook + LQR) |
 
 
 
@@ -43,14 +43,14 @@ Le modèle utilisé représente un quart de véhicule composé d’une masse sus
 ### 3.1. Suspension passive
 La suspension passive, constituée d’un ressort supportant la charge et d’un amortisseur dissipant l’énergie des oscillations, est modélisée par un quart de véhicule à deux degrés de liberté (2DDL), où la masse suspendue représente le châssis et la masse non suspendue la roue. 
 
-![Modèle passif](susp passive model quart vehicul.PNG)
+![Modèle passif](Images/susp passive model quart vehicul.PNG)
 
 Les équations du mouvement, dérivées de la deuxième loi de Newton, intègrent les forces du ressort et de l’amortisseur ainsi que l’excitation de la route, permettant d’évaluer à la fois le confort (accélérations du châssis) et la tenue de route (contact roue-sol).
 
-![Equation passive](equation de susp passive.PNG)  
+![Equation passive](equations/equation de susp passive.PNG)  
 
 Le schéma en bloc obtenu à l’aide du Simulink :
-![Schéma en bloc](sus passive.png) 
+![Schéma en bloc](Images/sus passive.png) 
 
 ---
 
@@ -59,11 +59,11 @@ La suspension semi-active améliore le confort et la stabilité en adaptant dyna
 Son modèle intègre des ressorts, des amortisseurs et un dispositif de contrôle, et utilise des équations différentielles pour décrire la dynamique du véhicule. 
 Des contrôleurs, tels que des algorithmes optimaux ou adaptatifs, déterminent les réglages d’amortissement les plus efficaces en fonction des conditions.
 
-![Modèle semi-actif](susp semiactive model quart vehicul.PNG)
+![Modèle semi-actif](Images/susp semiactive model quart vehicul.PNG)
 
 La suspension semi-active ajuste dynamiquement l’amortissement selon une loi Skyhook :
 
-![Equation semi-active](equation de susp semiactive.PNG)  
+![Equation semi-active](equations/equation de susp semiactive.PNG)  
 où :
 
 Cs (Amortissement Skyhook) : contrôle l'amortissement en fonction de la vitesse absolue du châssis pour améliorer le confort.
@@ -71,7 +71,7 @@ Cs (Amortissement Skyhook) : contrôle l'amortissement en fonction de la vitesse
 Fa : la force d'amortissement liée à la vitesse du châssis par rapport à un "ancre" fixe (Skyhook). Il aide à réduire les oscillations en s'opposant au mouvement du châssis seul, indépendamment de la roue.
 
 Le schéma en bloc obtenu à l’aide du Simulink :
-![Schéma en bloc](sus semi.png) 
+![Schéma en bloc](Images/sus semi.png) 
 
 ---
 
@@ -79,9 +79,11 @@ Le schéma en bloc obtenu à l’aide du Simulink :
 La suspension active combine mécanique et contrôle en temps réel, intégrant masses suspendues, ressorts, amortisseurs et actionneurs capables de générer des forces contrôlées. Un régulateur, basé sur des stratégies optimales ou adaptatives, ajuste les forces via les actionneurs en fonction des mesures de déplacement et de vitesse, afin de réduire les vibrations et d’améliorer la stabilité du véhicule.
 Son comportement est décrit par des équations différentielles pour les masses suspendues et non suspendues. 
 
-![Equation active](equation de susp active.PNG)
+![Equation active](equations/equation de susp active.PNG)
 
 Nous utilisons la commande Skyhook étendue pour modéliser et contrôler la force des actionneurs et l’algorithme de LQR pour avoir la valeur du gain pour l’expression de Fa.
+Le schéma en bloc obtenu à l’aide du Simulink :
+![Schéma en bloc](Images/sus aciv.png)
 
 ---
 
@@ -89,25 +91,25 @@ Nous utilisons la commande Skyhook étendue pour modéliser et contrôler la for
 
 Les valeurs des paramètres proviennent de travaux académiques et notamment de la thèse de Damien Sammier.
 
-![Valeurs paramètres](valeur des cst.PNG)
+![Valeurs paramètres](simulations/valeur des cst.PNG)
 
 ---
 
 ### 4.1. Résultats – Suspension passive
 
-![Courbe de la suspension passive](corb sus pass.png)  
+![Courbe de la suspension passive](simulations/corb sus pass.png)  
 
 ---
 
 ### 4.2. Résultats – Suspension semi-active
 
-![Courbe de la suspension semi_active](courb sus semi.png)  
+![Courbe de la suspension semi_active](simulations/courb sus semi.png)  
 
 ---
 
 ### 4.3. Résultats – Suspension active
 
-![Courbe de la suspension active](corb sus activ.png)  
+![Courbe de la suspension active](simulations/corb sus activ.png)  
  
 ---
 
